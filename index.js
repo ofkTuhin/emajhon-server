@@ -4,7 +4,7 @@ const cors=require('cors')
 
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config()
-const port = 5002
+const port =process.env.PORT||5000
 console.log(process.env.DB_PASS)
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.gqnwo.mongodb.net/emajonSample?retryWrites=true&w=majority`;
 const app = express()
