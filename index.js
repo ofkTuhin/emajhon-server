@@ -24,6 +24,7 @@ app.get('/', (req, res) => {
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const products = client.db("emajonSample").collection("emajon");
+  const orders = client.db("emajonSample").collection("orders");
 
   app.post('/addProducts',(req,res)=>{
     products.insertMany(req.body)
@@ -59,6 +60,17 @@ const productCart=req.body
 
 })
   
+})
+
+
+
+app.post('/orders',(req,res)=>{
+  console.log(req.body)
+  orders.insertOne(req.body)
+
+  .then(result=>{
+    res.send(result.insertContent)
+ })
 })
  
   
